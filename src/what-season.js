@@ -18,17 +18,30 @@ function getSeason(date/* date */) {
     return 'Unable to determine the time of year!'
   }
 
+  if(typeof date.getMonth != 'function'){
+    //return 'Invalid date!'
+    throw new Error('Invalid date!');
+  }
+
+
+   if (typeof date.getMonth != 'function'){
+    throw new Error('Invalid date!');
+  } 
+
+ 
   if (date.hasOwnProperty('toString')) {
     //return false
 
-    throw new NotImplementedError('Invalid date!');
+    throw new Error('Invalid date!');
 
   }
-  if (!date.hasOwnProperty('getTime')){
-    throw new NotImplementedError('Invalid date!');
-  }
+ 
 
+ // console.dir(date);
 
+  
+  
+ 
   if (date.getMonth) {
     let month = date.getMonth();
     console.debug(date);
@@ -64,7 +77,7 @@ function getSeason(date/* date */) {
     console.debug('stringswss')
   }
 
-
+  //throw new NotImplementedError('Invalid date!');
   /*  if () {
      return 'Unable to determine the time of year!';
      console.debug(date)
