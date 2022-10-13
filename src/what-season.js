@@ -12,54 +12,73 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function getSeason(date/* date */) {
-/*     if(date.getMonth){
-        let month = date.getMonth();
-        console.debug(date);
-        if(month >= 1 && month <= 2 || month === 12){
-            
-          return 'winter';
-        }
-        else if(month >= 3 && month <= 5){
-          return 'spring';
-        }
-        else if(month >= 6 && month <= 8){
-          return 'summer';
-        }
-        else if(month >= 9 && month <= 11){
-          return 'autumn'
-        }
-        console.debug(date.getMonth());
+  try {
+    date.getMonth
+  } catch (err) {
+    return 'Unable to determine the time of year!'
+  }
+
+  if (date.hasOwnProperty('toString')) {
+    //return false
+
+    throw new NotImplementedError('Invalid date!');
+
+  }
+  if (!date.hasOwnProperty('getTime')){
+    throw new NotImplementedError('Invalid date!');
+  }
+
+
+  if (date.getMonth) {
+    let month = date.getMonth();
+    console.debug(date);
+    if (month >= 0 && month <= 1 || month === 11) {
+
+      return 'winter';
     }
-    if(typeof (date) === 'string'){
-        if(date === 'winter'){
-            return 'winter';
-          }
-          else if(date === 'spring'){
-            return 'spring';
-          }
-          else if(date === 'summer'){
-            return 'summer';
-          }
-          else if(date === 'autumn'){
-            return 'autumn'
-          }
-          console.debug(date)
-        console.debug('stringswss')
+    else if (month >= 2 && month <= 4) {
+      return 'spring';
     }
- */
-
-
-    
-/*     if(!date === false){
-        return false;
-         console.debug(!date)
-        throw new NotImplementedError('Invalid date!'); 
+    else if (month >= 5 && month <= 7) {
+      return 'summer';
     }
- */
+    else if (month >= 8 && month <= 10) {
+      return 'autumn'
+    }
+    console.debug(date.getMonth());
+  }
+  if (typeof (date) === 'string') {
+    if (date === 'winter') {
+      return 'winter';
+    }
+    else if (date === 'spring') {
+      return 'spring';
+    }
+    else if (date === 'summer') {
+      return 'summer';
+    }
+    else if (date === 'autumn') {
+      return 'autumn'
+    }
+    console.debug(date)
+    console.debug('stringswss')
+  }
 
-    throw new NotImplementedError('Not implemented');
 
-  
+  /*  if () {
+     return 'Unable to determine the time of year!';
+     console.debug(date)
+     throw new NotImplementedError('Unable to determine the time of year!');
+   } */
+
+
+
+
+
+
+  //throw new NotImplementedError('Not implemented');
+
+
 }
 
 module.exports = {
