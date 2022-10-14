@@ -15,8 +15,67 @@ const { NotImplementedError } = require('../extensions/index.js');
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-function repeater(/* str, options */) {
-  throw new NotImplementedError('Not implemented');
+function repeater(str, options) {
+  //значения по умолчанию - переобпределить из объекта
+  let separator = '+';
+  let additionSeparator = '|';
+  let repeatTimes = 1;
+  let addition = '';
+  let additionRepeatTimes = 1;
+  // итоговые значения
+  let additPart = '';
+  let result = '';
+  //все значения проверять на строку, если не строка проверять на номер
+  if (!!options.separator) {
+    separator = options.separator;
+  }
+  if (!!options.additionSeparator) {
+    additionSeparator = options.additionSeparator;
+  }
+  if (!!options.repeatTimes) {
+    repeatTimes = options.repeatTimes;
+  }
+  if (!!options.addition) {
+    addition = options.addition;
+  }
+  if (!!options.additionRepeatTimes) {
+    additionRepeatTimes = options.additionRepeatTimes;
+  }
+  //функция проверки на строку
+  function isString(str) {
+    if (typeof str === 'string') {
+      return str;
+    }
+  }
+  //функция сборки addition
+  function getAddition() {
+    for (i = 0; i < additionRepeatTimes; i++) {
+      if (i != additionRepeatTimes - 1) {
+        additPart += addition + additionSeparator
+      }
+      else {
+        additPart += addition;
+      }
+    }
+  }
+
+  function getResult() {
+    for (i = 0; i < repeatTimes; i++) {
+      if (i != repeatTimes - 1) {
+        result += str + additPart + separator;
+      } else {
+        result += str + additPart;
+      }
+
+    }
+  }
+  getAddition()
+  getResult()
+
+  return result
+
+
+  //throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
 }
 
