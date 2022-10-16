@@ -39,17 +39,22 @@ function repeater(str, options) {
   }
   if (!!options.addition) {
     //addition = options.addition;
-    if(options.addition.toString() === `[object Object]` && options.addition === str){
-       addition = str;
-    } else{
-        addition = isString(options.addition);
-        console.debug(addition);
+    if (
+      options.addition.toString() === `[object Object]` &&
+      options.addition === str
+    ) {
+      addition = str;
+    } else {
+      addition = isString(options.addition);
+      //console.debug(addition);
     }
-    
-  } else if(!!options.addition === false && typeof(options.addition) === 'boolean') {
-      addition = isString(options.addition)
-  } else if(!!options.addition === false && options.addition === null){
-      addition = 'null'
+  } else if (
+    !!options.addition === false &&
+    typeof options.addition === "boolean"
+  ) {
+    addition = isString(options.addition);
+  } else if (!!options.addition === false && options.addition === null) {
+    addition = "null";
   }
   if (!!options.additionRepeatTimes) {
     additionRepeatTimes = options.additionRepeatTimes;
@@ -60,11 +65,10 @@ function repeater(str, options) {
       return str;
     } else if (str === null) {
       return "null";
-    }/*  else if(str.toString === `[object Object]` && str.){
+    } /*  else if(str.toString === `[object Object]` && str.){
         console.debug('OBJEEEEEECTTT')
         return str.hint
-    } */
-    else {
+    } */ else {
       return str.toString();
     }
 
