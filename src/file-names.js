@@ -16,11 +16,28 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function renameFiles(names) {
-  /*   const arr = [];
-    names.forEach(item => {
-        if(arr.find(item))
-    }) */
-  throw new NotImplementedError('Not implemented');
+  const set = new Set();
+  const objData = {
+
+  }
+  const result = [];
+  names.forEach(name => {
+    if(set.has(name)){
+      objData[name] += 1;
+      result.push(name + `(` + objData[name] + ')');
+    } else if(!set.has(name) && result.includes(name)){
+      set.add(name);
+      objData[name] = 1;
+      result.push(name + `(` + objData[name] + ')');
+    }
+    else {
+      set.add(name);
+      objData[name] = 0;
+      result.push(name);
+    }
+  })
+  return result
+  //throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
 }
 
