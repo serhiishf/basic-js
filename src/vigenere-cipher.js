@@ -20,7 +20,7 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 class VigenereCipheringMachine {
-  constructor(revers) {
+  constructor(revers = true) {
     this.direction = revers;
     this.alphabet = [
       "A",
@@ -106,14 +106,8 @@ class VigenereCipheringMachine {
         resultArr.push(message[i]);
       }
     }
-    if (this.direction === false) {
-      console.debug("FAAALSE", message, key);
-      let tempResult = [];
-      while (resultArr.length > 0) {
-        tempResult.push(resultArr.pop());
-      }
-
-      return tempResult.join("");
+    if (this.direction == false) {
+      return tempResult.reverse().join("");
     }
     return resultArr.join("");
   }
@@ -144,14 +138,8 @@ class VigenereCipheringMachine {
         resultArr.push(encryptedMessage[i]);
       }
     }
-    if (this.direction === false) {
-      console.debug("FAAALSE", encryptedMessage, key);
-      let tempResult = [];
-      while (resultArr.length > 0) {
-        tempResult.push(resultArr.pop());
-      }
-
-      return tempResult.join("");
+    if (this.direction == false) {
+        return tempResult.reverse().join("");
     }
     return resultArr.join("");
   }
