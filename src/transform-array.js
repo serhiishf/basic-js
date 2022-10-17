@@ -41,7 +41,11 @@ function transform(arr) {
     } if (arr[index + 1]) {
       next = arr[index + 1];
     }
-
+/*     
+    if(index === 0 && (num === doublPrev || num === discarbPrev || typeof num === 'boolean') ){
+        result.push(num);
+    }
+ */
     if (typeof num === 'number') {
       //просто число и вокруг числа
       if (prev != discarbNext && prev != doublNext && next != doublPrev && next != discarbPrev) {
@@ -60,15 +64,19 @@ function transform(arr) {
         }
       }
       //если и предыдущий и следующий равны инструкциям к этому значению
+      if(prev === doublNext && next === doublPrev){
+        result.push(num);
+        result.push(num);
+        result.push(num);
+      }
+      if(prev === doublNext && next === discarbPrev){
+        result.push(num);
+      }
       if((prev === discarbNext || prev === doublNext) &&  (next === doublPrev && next === discarbPrev)){
         if((prev === doublNext && next != discarbPrev) || (prev != discarbNext && next === doublPrev)){
           doublePush(num, result)
         }
-        if(prev === doublNext && next === doublPrev){
-          result.push(num);
-          result.push(num);
-          result.push(num);
-        }
+        
        
       }
     }
